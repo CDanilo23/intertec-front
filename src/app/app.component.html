@@ -1,3 +1,14 @@
-<h1>
-  {{title}}
-</h1>
+<section *ngIf="user" class="panel">
+  <form (ngSubmit)="validateUserName()" class="panel-body">
+    
+    <div class="input-group">
+      <span class="input-group-addon">UserName</span>
+      <input type="text" class="form-control" name="userName" required [(ngModel)]="user" #userName="ngModel">
+    </div>
+
+
+    <br/>
+    <button type="submit" class="btn">Save</button>
+
+  </form>
+</section>

@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  user = '';
+
+  ngOnInit(){
+   this.user = ' ';
+  }
+
+  validateUserName(){
+    console.log("entro validateUserName");
+  }
 }
