@@ -1,4 +1,5 @@
-<section *ngIf="user" class="panel">
+
+<section class="panel">
   <form (ngSubmit)="validateUserName()" class="panel-body">
     
     <div class="input-group">
@@ -9,6 +10,46 @@
 
     <br/>
     <button type="submit" class="btn">Save</button>
+
+  
+
+  <section class="panel-body" *ngIf="restrictedWords">
+    
+      <div id="content2">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Restricted Words</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-active" *ngFor="let word of restrictedWords">
+              <td>
+                <a>{{word.name}} </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="content1" *ngIf="usedUserNames">
+         <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Used UserNames</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-active" *ngFor="let userName of usedUserNames">
+              <td>
+                <a>{{userName.name}} </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </section>
 
   </form>
 </section>
