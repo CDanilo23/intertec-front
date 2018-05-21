@@ -1,21 +1,36 @@
-
 <section class="panel">
   <form (ngSubmit)="validateUserName()" class="panel-body">
-    
+
     <div class="input-group">
       <span class="input-group-addon">UserName</span>
       <input type="text" class="form-control" name="userName" required [(ngModel)]="user" #userName="ngModel">
     </div>
 
+    <div class="alert alert-dismissible alert-info" *ngIf="available==true">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      The username
+      <strong>{{user}}</strong> is available
+    </div>
+
+    <div class="alert alert-dismissible alert-danger" *ngIf="available==false && kindOfList=='not available' ">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      The username
+      <strong>{{user}}</strong> is not available
+    </div>
+
+    <div class="alert alert-dismissible alert-danger" *ngIf="available==false && kindOfList=='restricted' ">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      The username
+      <strong>{{user}}</strong> is a restricted word
+    </div>
 
     <br/>
     <button type="submit" class="btn">Save</button>
 
-  
 
-  <section class="panel-body" *ngIf="restrictedWords">
-    
-      <div id="content2">
+    <section class="panel-body">
+
+      <div id="content2" *ngIf="restrictedWords && restrictedWords.length>0">
         <table class="table table-hover">
           <thead>
             <tr>
@@ -25,15 +40,15 @@
           <tbody>
             <tr class="table-active" *ngFor="let word of restrictedWords">
               <td>
-                <a>{{word.name}} </a>
+                <a>{{word}} </a>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div id="content1" *ngIf="usedUserNames">
-         <table class="table table-hover">
+      <div id="content1" *ngIf="usedUserNames && usedUserNames.length>0 ">
+        <table class="table table-hover">
           <thead>
             <tr>
               <th scope="col">Used UserNames</th>
@@ -42,13 +57,13 @@
           <tbody>
             <tr class="table-active" *ngFor="let userName of usedUserNames">
               <td>
-                <a>{{userName.name}} </a>
+                <a>{{userName}} </a>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-    
+
     </section>
 
   </form>
