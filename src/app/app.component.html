@@ -3,7 +3,11 @@
 
     <div class="input-group">
       <span class="input-group-addon">UserName</span>
-      <input type="text" class="form-control" name="userName" required [(ngModel)]="user" #userName="ngModel">
+      <input type="text" class="form-control" required minlength="6" name="userName" required [(ngModel)]="user" #userName="ngModel">
+    </div>
+
+    <div *ngIf="name.errors.minlength">
+      username must be at least 6 characters long.
     </div>
 
     <div class="alert alert-dismissible alert-info" *ngIf="available==true">
